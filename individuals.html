@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Частным клиентам — кошелёк и обмен валют | PlatiMarket</title>
+<meta name="description" content="Личный многовалютный кошелёк PlatiMarket: пополнение, обмен валют по прозрачному курсу, вывод на карты и счета.">
+<link rel="icon" href="assets/logo.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&subset=cyrillic&display=swap">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body data-page="individuals">
+<div id="site-header"></div>
+<div id="notice-bar"></div>
+<main>
+
+<section class="page-hero"><div class="container">
+  <div class="eyebrow"><span data-icon="wallet" data-size="16"></span>Частным клиентам</div>
+  <h1>Личный кошелёк для денег в разных валютах</h1>
+  <p class="lead">Храните рубли, доллары, евро и криптовалюту на одном балансе, обменивайте их друг на друга и выводите, когда нужно.</p>
+</div></section>
+
+<section class="section"><div class="container">
+  <div class="grid grid-2" style="align-items:start">
+    <div class="reveal">
+      <h2>Обмен внутри кошелька</h2>
+      <p class="lead">Курс и итоговая сумма видны сразу, без скрытых надбавок.</p>
+      <div class="grid grid-2" style="margin-top:20px">
+        <div class="card"><div class="card-icon"><span data-icon="eye" data-size="22"></span></div><h3>Прозрачный курс</h3><p>Комиссия включена в курс и видна заранее.</p></div>
+        <div class="card"><div class="card-icon teal"><span data-icon="zap" data-size="22"></span></div><h3>Моментально</h3><p>Обмен между валютами кошелька проходит без ожидания оператора.</p></div>
+      </div>
+    </div>
+    <div class="converter reveal" style="--d:.1s">
+      <div id="full-converter"></div>
+    </div>
+  </div>
+</div></section>
+
+<section class="section section-alt"><div class="container">
+  <div class="section-head reveal"><h2>Пополнение и вывод</h2><p class="lead">Выбирайте удобный способ — список расширяется по мере подключения провайдеров</p></div>
+  <div class="chip-row reveal" data-methods></div>
+</div></section>
+
+<section class="section"><div class="container">
+  <div class="section-head reveal"><h2>Лимиты по уровню верификации</h2><p class="lead">Чем выше уровень проверки, тем больше доступный объём операций</p></div>
+  <div class="table-wrap reveal" data-limits-table></div>
+  <div style="text-align:center;margin-top:18px"><a class="btn btn-soft" href="security.html">Как проходит верификация<span data-icon="arrow-right" data-size="18"></span></a></div>
+</div></section>
+
+<section class="section section-alt"><div class="container">
+  <div class="section-head reveal"><h2>Частые вопросы</h2></div>
+  <div class="faq-list reveal" data-faq data-faq-tag="general"></div>
+</div></section>
+
+<section class="section"><div class="container">
+  <div class="cta reveal">
+    <div><h2>Готовы открыть кошелёк?</h2><p>Регистрация без лишних шагов — обмен и вывод доступны сразу после подтверждения email.</p></div>
+    <a class="btn" href="cabinet.html?tab=register">Зарегистрироваться</a>
+  </div>
+</div></section>
+
+</main>
+<div id="site-footer"></div>
+<script src="js/config.js"></script>
+<script src="js/icons.js"></script>
+<script src="js/api.js"></script>
+<script src="js/ui.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>

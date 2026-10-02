@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Безопасность и верификация | PlatiMarket</title>
+<meta name="description" content="Как PlatiMarket защищает средства клиентов: двухфакторная аутентификация, подтверждение операций, уровни верификации и лимиты.">
+<link rel="icon" href="assets/logo.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&subset=cyrillic&display=swap">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body data-page="security">
+<div id="site-header"></div>
+<div id="notice-bar"></div>
+<main>
+
+<section class="page-hero"><div class="container">
+  <div class="eyebrow"><span data-icon="shield-check" data-size="16"></span>Безопасность</div>
+  <h1>Как мы защищаем средства и данные</h1>
+  <p class="lead">Базовые механизмы защиты и поэтапная верификация — ниже описан целевой подход, часть механизмов ещё в разработке (см. README.md).</p>
+</div></section>
+
+<section class="section"><div class="container">
+  <div class="grid grid-3">
+    <div class="card reveal">
+      <div class="card-icon"><span data-icon="lock" data-size="24"></span></div>
+      <h3>Двухфакторная аутентификация</h3>
+      <p>Подтверждение входа и подозрительных операций вторым фактором (email/приложение-аутентификатор).</p>
+    </div>
+    <div class="card reveal" style="--d:.08s">
+      <div class="card-icon teal"><span data-icon="mail" data-size="24"></span></div>
+      <h3>Подтверждение операций</h3>
+      <p>Вывод средств и смена реквизитов подтверждаются отдельным кодом на email.</p>
+    </div>
+    <div class="card reveal" style="--d:.16s">
+      <div class="card-icon green"><span data-icon="eye" data-size="24"></span></div>
+      <h3>Мониторинг операций</h3>
+      <p>Подозрительные платежи и выводы помечаются для ручной проверки до исполнения.</p>
+    </div>
+  </div>
+</div></section>
+
+<section class="section section-alt"><div class="container">
+  <div class="section-head reveal"><h2>Уровни верификации</h2><p class="lead">Чем выше уровень, тем больше доступный объём операций</p></div>
+  <div class="grid grid-3">
+    <div class="card tier reveal">
+      <h3>Без верификации</h3>
+      <ul>
+        <li><span data-icon="check" data-size="16"></span>Email и пароль</li>
+        <li><span data-icon="check" data-size="16"></span>Небольшие операции</li>
+      </ul>
+    </div>
+    <div class="card tier featured reveal" style="--d:.08s">
+      <span class="tier-badge">Рекомендуем</span>
+      <h3>Базовая верификация</h3>
+      <ul>
+        <li><span data-icon="check" data-size="16"></span>Паспортные данные</li>
+        <li><span data-icon="check" data-size="16"></span>Повышенные лимиты</li>
+        <li><span data-icon="check" data-size="16"></span>Доступ к выводу на карту</li>
+      </ul>
+    </div>
+    <div class="card tier reveal" style="--d:.16s">
+      <h3>Полная верификация</h3>
+      <ul>
+        <li><span data-icon="check" data-size="16"></span>Подтверждение адреса</li>
+        <li><span data-icon="check" data-size="16"></span>Селфи-проверка</li>
+        <li><span data-icon="check" data-size="16"></span>Лимиты без ограничений</li>
+      </ul>
+    </div>
+  </div>
+  <div style="text-align:center;margin-top:24px"><a class="btn btn-soft" href="fees.html">Точные лимиты по уровням<span data-icon="arrow-right" data-size="18"></span></a></div>
+</div></section>
+
+<section class="section"><div class="container">
+  <div class="section-head reveal"><h2>Частые вопросы о безопасности</h2></div>
+  <div class="faq-list reveal" data-faq data-faq-tag="security"></div>
+</div></section>
+
+</main>
+<div id="site-footer"></div>
+<script src="js/config.js"></script>
+<script src="js/icons.js"></script>
+<script src="js/api.js"></script>
+<script src="js/ui.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>

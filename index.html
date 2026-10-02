@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>PlatiMarket — кошелёк, обмен валют и приём платежей</title>
+<meta name="description" content="PlatiMarket: многовалютный электронный кошелёк, обмен валют по выгодному курсу, вывод на карты и счета, приём платежей и выплаты для бизнеса через API.">
+<link rel="icon" href="assets/logo.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&subset=cyrillic&display=swap">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body data-page="home">
+<div id="site-header"></div>
+<div id="notice-bar"></div>
+<main>
+
+<section class="hero"><div class="container hero-grid">
+  <div>
+    <div class="eyebrow"><span data-icon="zap" data-size="16"></span>Кошелёк + обмен + приём платежей</div>
+    <h1>Один сервис для <span>денег и платежей</span> — для вас и для бизнеса</h1>
+    <p class="lead">Многовалютный кошелёк с обменом по прозрачному курсу, вывод на карты и счета, а также приём платежей и массовые выплаты для бизнеса через простое API.</p>
+    <div class="hero-cta">
+      <a class="btn" href="cabinet.html?tab=register">Открыть кошелёк<span data-icon="arrow-right" data-size="18"></span></a>
+      <a class="btn btn-outline" href="business.html">Для бизнеса</a>
+    </div>
+    <div class="hero-stats">
+      <div><b>6+</b><span>валют и криптовалют</span></div>
+      <div><b>8+</b><span>способов пополнения и вывода</span></div>
+      <div><b>24/7</b><span>обмен внутри кошелька</span></div>
+    </div>
+  </div>
+
+  <div class="converter">
+    <div class="converter-tabs">
+      <button type="button" class="active">Обмен</button>
+      <button type="button" disabled title="Доступно после регистрации">Пополнение</button>
+      <button type="button" disabled title="Доступно после регистрации">Вывод</button>
+    </div>
+    <div id="hero-converter"></div>
+  </div>
+</div></section>
+
+<section class="section"><div class="container">
+  <div class="section-head reveal"><h2>Как это работает</h2><p class="lead">Четыре шага от регистрации до первой операции</p></div>
+  <div class="grid grid-4">
+    <div class="card reveal"><span class="step-num">1</span><div class="card-icon"><span data-icon="users" data-size="24"></span></div><h3>Регистрация</h3><p>Создайте кошелёк по email за пару минут, без лишних документов на старте.</p></div>
+    <div class="card reveal" style="--d:.08s"><span class="step-num">2</span><div class="card-icon teal"><span data-icon="credit-card" data-size="24"></span></div><h3>Пополнение</h3><p>Заводите деньги картой, по СБП, банковским переводом или в криптовалюте.</p></div>
+    <div class="card reveal" style="--d:.16s"><span class="step-num">3</span><div class="card-icon"><span data-icon="repeat" data-size="24"></span></div><h3>Обмен</h3><p>Меняйте валюты внутри кошелька по понятному курсу — без похода в обменник.</p></div>
+    <div class="card reveal" style="--d:.24s"><span class="step-num">4</span><div class="card-icon green"><span data-icon="send" data-size="24"></span></div><h3>Вывод или оплата</h3><p>Выводите на карту/счёт или оплачивайте покупки и услуги прямо из кошелька.</p></div>
+  </div>
+</div></section>
+
+<section class="section section-alt"><div class="container">
+  <div class="section-head reveal"><h2>Частным клиентам</h2><p class="lead">Личный многовалютный кошелёк под вашим контролем</p></div>
+  <div class="grid grid-3">
+    <div class="card reveal"><div class="card-icon"><span data-icon="wallet" data-size="24"></span></div><h3>Мультивалютный баланс</h3><p>Рубли, доллары, евро и криптовалюты — на одном счёте, без лишних переводов между сервисами.</p></div>
+    <div class="card reveal" style="--d:.08s"><div class="card-icon teal"><span data-icon="repeat" data-size="24"></span></div><h3>Моментальный обмен</h3><p>Конвертация между валютами кошелька по курсу, который виден до подтверждения.</p></div>
+    <div class="card reveal" style="--d:.16s"><div class="card-icon green"><span data-icon="credit-card" data-size="24"></span></div><h3>Карты и выводы</h3><p>Пополнение и вывод на банковские карты, СБП и криптовалютные адреса.</p></div>
+  </div>
+  <div style="text-align:center;margin-top:28px"><a class="btn btn-soft" href="individuals.html">Подробнее для частных клиентов<span data-icon="arrow-right" data-size="18"></span></a></div>
+</div></section>
+
+<section class="section"><div class="container">
+  <div class="section-head reveal"><h2>Бизнесу</h2><p class="lead">Принимайте платежи и платите исполнителям без ручной рутины</p></div>
+  <div class="grid grid-3">
+    <div class="card reveal"><div class="card-icon"><span data-icon="link" data-size="24"></span></div><h3>Приём платежей</h3><p>Платёжные ссылки, кнопка оплаты на сайте и приём через API — без своего эквайринга.</p></div>
+    <div class="card reveal" style="--d:.08s"><div class="card-icon teal"><span data-icon="users" data-size="24"></span></div><h3>Массовые выплаты</h3><p>Один запрос — выплата сразу множеству получателей: партнёрам, фрилансерам, продавцам.</p></div>
+    <div class="card reveal" style="--d:.16s"><div class="card-icon green"><span data-icon="terminal" data-size="24"></span></div><h3>API для разработчиков</h3><p>Понятное REST API с вебхуками о статусах платежей и выплат.</p></div>
+  </div>
+  <div style="text-align:center;margin-top:28px"><a class="btn btn-soft" href="business.html">Подробнее для бизнеса<span data-icon="arrow-right" data-size="18"></span></a></div>
+</div></section>
+
+<section class="section section-alt"><div class="container">
+  <div class="section-head reveal"><h2>Способы пополнения и вывода</h2></div>
+  <div class="chip-row reveal" data-methods></div>
+</div></section>
+
+<section class="section"><div class="container">
+  <div class="grid grid-2" style="align-items:center">
+    <div class="reveal">
+      <div class="tag-row" style="justify-content:flex-start"><span class="tag">Безопасность</span></div>
+      <h2>Контроль и защита на каждом шаге</h2>
+      <p class="lead">Двухфакторная аутентификация, подтверждение операций и поэтапная верификация для увеличения лимитов.</p>
+      <a class="btn btn-soft" href="security.html">Как мы защищаем средства<span data-icon="arrow-right" data-size="18"></span></a>
+    </div>
+    <div class="card reveal" style="--d:.1s">
+      <div class="card-icon"><span data-icon="shield-check" data-size="24"></span></div>
+      <h3>Что уже предусмотрено</h3>
+      <ul style="display:flex;flex-direction:column;gap:10px;margin-top:10px;color:var(--muted);font-size:14.5px;padding-left:0">
+        <li>— Подтверждение входа и вывода по email</li>
+        <li>— Поэтапные лимиты по уровню верификации</li>
+        <li>— Мониторинг подозрительных операций</li>
+      </ul>
+    </div>
+  </div>
+</div></section>
+
+<section class="section section-alt" id="faq"><div class="container">
+  <div class="section-head reveal"><h2>Частые вопросы</h2></div>
+  <div class="faq-list reveal" data-faq data-faq-limit="4"></div>
+  <div style="text-align:center;margin-top:18px"><a class="btn btn-soft" href="faq.html">Все вопросы<span data-icon="arrow-right" data-size="18"></span></a></div>
+</div></section>
+
+<section class="section"><div class="container">
+  <div class="cta reveal">
+    <div><h2>Готовы попробовать?</h2><p>Регистрация занимает пару минут — дальше можно пополнять и обменивать валюту.</p></div>
+    <a class="btn" href="cabinet.html?tab=register">Открыть кошелёк</a>
+  </div>
+</div></section>
+
+</main>
+<div id="site-footer"></div>
+<script src="js/config.js"></script>
+<script src="js/icons.js"></script>
+<script src="js/api.js"></script>
+<script src="js/ui.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>API для разработчиков | PlatiMarket</title>
+<meta name="description" content="REST API PlatiMarket: приём платежей, счета, массовые выплаты и вебхуки о статусах операций. Документация и примеры запросов.">
+<link rel="icon" href="assets/logo.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&subset=cyrillic&display=swap">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body data-page="api">
+<div id="site-header"></div>
+<div id="notice-bar"></div>
+<main>
+
+<section class="page-hero"><div class="container">
+  <div class="eyebrow"><span data-icon="terminal" data-size="16"></span>Для разработчиков</div>
+  <h1>API для приёма платежей и выплат</h1>
+  <p class="lead">Простое REST API: счета, статусы операций и массовые выплаты. Ниже — ориентировочная схема эндпоинтов для будущего бэкенда (сейчас они не развёрнуты, см. README.md).</p>
+</div></section>
+
+<section class="section"><div class="container">
+  <div class="grid grid-2" style="align-items:start">
+    <div class="reveal">
+      <h2>Аутентификация</h2>
+      <p class="lead">Запросы подписываются секретным ключом бизнес-аккаунта и передаются в заголовке.</p>
+      <div class="code-block">Authorization: Bearer <span class="c-str">sk_live_xxxxxxxxxxxxxxxx</span>
+Content-Type: <span class="c-str">application/json</span></div>
+      <p style="margin-top:14px">Ключи — тестовый (<code>sk_test_</code>) и боевой (<code>sk_live_</code>) — будут выдаваться в личном кабинете бизнес-аккаунта после верификации.</p>
+    </div>
+    <div class="reveal" style="--d:.08s">
+      <h2>Базовый URL</h2>
+      <p class="lead">Адрес API будет объявлен после запуска бэкенда.</p>
+      <div class="code-block"><span class="c-mut"># TODO: заменить на реальный адрес</span>
+<span class="c-key">BASE_URL</span> = <span class="c-str">https://api.platimarket.example</span></div>
+    </div>
+  </div>
+</div></section>
+
+<section class="section section-alt"><div class="container">
+  <div class="section-head reveal"><h2>Основные эндпоинты</h2><p class="lead">Ориентир для бэкенда — полная версия появится в отдельной документации</p></div>
+  <div class="grid grid-2">
+    <div class="card reveal">
+      <h3>Счета и платежи</h3>
+      <div class="endpoint"><span class="method post">POST</span>/v1/invoices</div>
+      <div class="endpoint"><span class="method get">GET</span>/v1/invoices/:id</div>
+      <div class="endpoint"><span class="method get">GET</span>/v1/payments</div>
+      <p>Создание платёжной ссылки, проверка статуса оплаты, список операций.</p>
+    </div>
+    <div class="card reveal" style="--d:.08s">
+      <h3>Выплаты</h3>
+      <div class="endpoint"><span class="method post">POST</span>/v1/payouts</div>
+      <div class="endpoint"><span class="method post">POST</span>/v1/payouts/batch</div>
+      <div class="endpoint"><span class="method get">GET</span>/v1/payouts/:id</div>
+      <p>Разовая выплата получателю или пакетная выплата списком (<code>batch</code>).</p>
+    </div>
+    <div class="card reveal">
+      <h3>Кошелёк</h3>
+      <div class="endpoint"><span class="method get">GET</span>/v1/balances</div>
+      <div class="endpoint"><span class="method post">POST</span>/v1/exchange</div>
+      <p>Баланс по валютам и внутренний обмен между ними.</p>
+    </div>
+    <div class="card reveal" style="--d:.08s">
+      <h3>Вебхуки</h3>
+      <div class="endpoint"><span class="method post">POST</span>ваш URL ← payment.succeeded</div>
+      <div class="endpoint"><span class="method post">POST</span>ваш URL ← payout.completed</div>
+      <p>Уведомления о событиях отправляются POST-запросом на указанный вами URL.</p>
+    </div>
+  </div>
+</div></section>
+
+<section class="section"><div class="container">
+  <div class="section-head reveal"><h2>Пример: создание счёта</h2></div>
+  <div class="grid grid-2">
+    <div class="reveal">
+      <p class="lead" style="margin-bottom:10px">Запрос</p>
+      <div class="code-block">POST /v1/invoices
+{
+  <span class="c-key">"amount"</span>: 1500,
+  <span class="c-key">"currency"</span>: <span class="c-str">"RUB"</span>,
+  <span class="c-key">"description"</span>: <span class="c-str">"Заказ #1042"</span>,
+  <span class="c-key">"webhook_url"</span>: <span class="c-str">"https://shop.example/webhook"</span>
+}</div>
+    </div>
+    <div class="reveal" style="--d:.08s">
+      <p class="lead" style="margin-bottom:10px">Ответ</p>
+      <div class="code-block">{
+  <span class="c-key">"id"</span>: <span class="c-str">"inv_8f21"</span>,
+  <span class="c-key">"status"</span>: <span class="c-str">"pending"</span>,
+  <span class="c-key">"pay_url"</span>: <span class="c-str">"https://platimarket.example/pay/inv_8f21"</span>
+}</div>
+    </div>
+  </div>
+  <p style="margin-top:18px;color:var(--muted)">На фронтенде этот запрос пока эмулирует <code>API.createInvoice()</code> из <code>js/api.js</code> — метод возвращает демо-ответ без реального сервера.</p>
+</div></section>
+
+<section class="section section-alt"><div class="container">
+  <div class="cta reveal">
+    <div><h2>Нужен доступ к API?</h2><p>Подключите бизнес-аккаунт — тестовые ключи выдаются сразу после регистрации.</p></div>
+    <a class="btn" href="cabinet.html?tab=register">Получить доступ</a>
+  </div>
+</div></section>
+
+</main>
+<div id="site-footer"></div>
+<script src="js/config.js"></script>
+<script src="js/icons.js"></script>
+<script src="js/api.js"></script>
+<script src="js/ui.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>
