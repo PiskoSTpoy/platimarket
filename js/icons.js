@@ -36,6 +36,10 @@ const ICONS = {
   mail: '<rect x="2.5" y="5" width="19" height="14" rx="2.5"/><path d="m3.5 6.5 8.5 7 8.5-7"/>',
   "arrow-right": '<path d="M4 12h16"/><path d="m13 5 7 7-7 7"/>',
   banknote: '<rect x="2.5" y="6.5" width="19" height="11" rx="2"/><circle cx="12" cy="12" r="2.6"/><path d="M5.5 9v0M18.5 15v0"/>',
+  instagram: '<rect x="3" y="3" width="18" height="18" rx="5.5"/><circle cx="12" cy="12" r="4"/><path d="M17 7v0"/>',
+  linkedin: '<rect x="3" y="3" width="18" height="18" rx="3"/><path d="M8 10.5v6.5"/><circle cx="8" cy="7" r="1"/><path d="M12 17V10.5"/><path d="M12 13.3c0-1.5 1-2.8 2.5-2.8s2.5 1.1 2.5 2.7V17"/>',
+  youtube: '<rect x="2.5" y="5.5" width="19" height="13" rx="4"/><path d="m10.5 9 5 3-5 3Z" fill="currentColor"/>',
+  smile: '<circle cx="12" cy="12" r="9"/><path d="M8 14c1 1.3 2.3 2 4 2s3-.7 4-2"/><path d="M8.5 9.5v0M15.5 9.5v0"/>',
 };
 
 function renderIcons(root){
@@ -43,6 +47,7 @@ function renderIcons(root){
     const name = el.getAttribute('data-icon');
     if (el.dataset.iconDone || !ICONS[name]) return;
     const size = el.getAttribute('data-size') || 20;
+    el.style.fontSize = size + 'px';
     el.innerHTML = `<svg viewBox="0 0 24 24" width="${size}" height="${size}" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">${ICONS[name]}</svg>`;
     el.dataset.iconDone = '1';
   });

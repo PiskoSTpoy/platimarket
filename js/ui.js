@@ -36,9 +36,13 @@ function renderFooter() {
         <div>
           <div class="footer-brand"><img src="assets/logo.svg" alt="${SITE.name}">${SITE.name}</div>
           <p>${SITE.tagline}.</p>
+          <div class="footer-social">
+            <a href="${c.tg}" target="_blank" rel="noopener" aria-label="Telegram"><span data-icon="send" data-size="16"></span></a>
+            <a href="mailto:${c.email}" aria-label="Email"><span data-icon="mail" data-size="16"></span></a>
+          </div>
         </div>
         <div>
-          <h4>Сервис</h4>
+          <h4>Продукты</h4>
           <ul>
             <li><a href="individuals.html">Частным клиентам</a></li>
             <li><a href="business.html">Бизнесу</a></li>
@@ -46,7 +50,7 @@ function renderFooter() {
           </ul>
         </div>
         <div>
-          <h4>Информация</h4>
+          <h4>Инструменты</h4>
           <ul>
             <li><a href="fees.html">Тарифы и лимиты</a></li>
             <li><a href="security.html">Безопасность</a></li>
@@ -67,6 +71,7 @@ function renderFooter() {
         <span>Работаем ${c.hours}</span>
       </div>
     </div></footer>`;
+  renderIcons(host);
 }
 
 function renderFaqList(selector, limit) {
