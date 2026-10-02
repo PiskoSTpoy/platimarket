@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Личный кабинет | PlatiMarket</title>
+<meta name="description" content="Баланс, обмен валют, пополнение и вывод средств в личном кабинете PlatiMarket.">
+<link rel="icon" href="assets/logo.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&subset=cyrillic&display=swap">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body data-page="dashboard">
+<div id="site-header"></div>
+<div id="notice-bar"></div>
+<main>
+<div class="container">
+
+  <div class="wallet-topbar">
+    <div>
+      <h1>Личный кабинет</h1>
+      <div class="muted-line" id="wallet-user">Загрузка…</div>
+    </div>
+    <button class="btn btn-outline btn-sm" id="logout-btn">Выйти</button>
+  </div>
+
+  <div class="grid grid-3" id="balances-grid" style="margin-bottom:28px"></div>
+
+  <div class="converter" style="margin-bottom:28px">
+    <div class="wallet-tabs" id="wallet-tabs">
+      <button type="button" data-panel="exchange" class="active">Обмен</button>
+      <button type="button" data-panel="deposit">Пополнение</button>
+      <button type="button" data-panel="withdraw">Вывод</button>
+    </div>
+
+    <form id="panel-exchange" class="wallet-panel">
+      <div class="form-grid">
+        <div class="field"><label for="ex-from">Отдаёте</label>
+          <div style="display:flex;gap:8px">
+            <input id="ex-amount" type="number" min="0" step="any" placeholder="Сумма" style="flex:1;border:1.5px solid var(--border);border-radius:10px;padding:11px 13px;font-size:1.5rem">
+            <select id="ex-from" class="conv-select"></select>
+          </div>
+        </div>
+        <div class="field"><label for="ex-to">Получаете</label><select id="ex-to" class="conv-select" style="width:100%;padding:11px 13px"></select></div>
+      </div>
+      <p class="muted-line" id="ex-preview">—</p>
+      <button class="btn" type="submit">Обменять</button>
+    </form>
+
+    <form id="panel-deposit" class="wallet-panel" hidden>
+      <div class="form-grid">
+        <div class="field"><label for="dep-currency">Валюта</label><select id="dep-currency" class="conv-select" style="width:100%;padding:11px 13px"></select></div>
+        <div class="field"><label for="dep-amount">Сумма</label><input id="dep-amount" type="number" min="0" step="any"></div>
+      </div>
+      <div class="field"><label for="dep-method">Способ</label>
+        <select id="dep-method" class="conv-select" style="width:100%;padding:11px 13px">
+          <option>Visa / Mastercard</option>
+          <option>СБП</option>
+          <option>Банковский перевод</option>
+          <option>USDT (TRC20)</option>
+        </select>
+      </div>
+      <div class="demo-note" style="margin:0 0 14px">Демо-режим: пополнение зачисляется мгновенно, без реального платёжного провайдера.</div>
+      <button class="btn" type="submit">Пополнить</button>
+    </form>
+
+    <form id="panel-withdraw" class="wallet-panel" hidden>
+      <div class="form-grid">
+        <div class="field"><label for="wd-currency">Валюта</label><select id="wd-currency" class="conv-select" style="width:100%;padding:11px 13px"></select></div>
+        <div class="field"><label for="wd-amount">Сумма</label><input id="wd-amount" type="number" min="0" step="any"></div>
+      </div>
+      <div class="field"><label for="wd-requisites">Реквизиты</label><input id="wd-requisites" type="text" placeholder="Номер карты / счёта"></div>
+      <div class="demo-note" style="margin:0 0 14px">Демо-режим: заявка на вывод переходит в статус «в обработке» и не исполняется реальным переводом.</div>
+      <button class="btn" type="submit">Вывести</button>
+    </form>
+  </div>
+
+  <div class="section-head" style="text-align:left;margin:0 0 20px;max-width:none">
+    <h2 style="font-size:2.2rem">История операций</h2>
+  </div>
+  <div class="table-wrap" id="tx-table-wrap" style="margin-bottom:60px"></div>
+
+</div>
+</main>
+<div id="site-footer"></div>
+<script src="js/config.js"></script>
+<script src="js/icons.js"></script>
+<script src="js/api.js"></script>
+<script src="js/ui.js"></script>
+<script src="js/app.js"></script>
+<script src="js/dashboard.js"></script>
+</body>
+</html>

@@ -351,6 +351,25 @@ footer.site-footer{background:#0f1430;color:#b9bdd6;padding:60px 0 28px;margin-t
 .endpoint .method.get{background:#2563eb}
 .endpoint .method.post{background:var(--green)}
 
+/* dashboard (личный кабинет) */
+.wallet-topbar{
+  display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;
+  padding:28px 0;
+}
+.wallet-topbar h1{font-size:2.4rem;margin:0}
+.wallet-topbar .muted-line{color:var(--muted);font-size:1.4rem;margin-top:4px}
+.balance-card{display:flex;flex-direction:column;gap:6px}
+.balance-card .bal-code{font-size:1.3rem;font-weight:800;color:var(--muted);letter-spacing:.04em}
+.balance-card .bal-amount{font-size:2.6rem;font-weight:800}
+.wallet-tabs{display:flex;gap:6px;background:var(--bg);border-radius:12px;padding:4px;margin-bottom:22px}
+.wallet-tabs button{flex:1;border:none;background:none;padding:10px;border-radius:9px;font-weight:700;font-size:1.4rem;color:var(--muted);cursor:pointer}
+.wallet-tabs button.active{background:#fff;color:var(--text);box-shadow:0 2px 8px -2px rgba(18,23,51,.15)}
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.status-pill{display:inline-flex;padding:3px 10px;border-radius:999px;font-size:1.2rem;font-weight:700}
+.status-pill.completed{background:var(--green-soft);color:var(--green)}
+.status-pill.pending{background:#fff7e6;color:#92620a}
+.empty-state{padding:30px;text-align:center;color:var(--muted);font-size:1.5rem}
+
 /* icons (inline svg sizing) */
 [data-icon]{display:inline-flex;align-items:center;justify-content:center}
 [data-icon] svg{width:1em;height:1em}
@@ -383,4 +402,5 @@ footer.site-footer{background:#0f1430;color:#b9bdd6;padding:60px 0 28px;margin-t
   .footer-grid{grid-template-columns:1fr}
   .section{padding:60px 0}
   .header-actions .btn-outline{display:none}
+  .form-grid{grid-template-columns:1fr}
 }

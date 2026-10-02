@@ -2,18 +2,20 @@ function renderHeader() {
   const host = document.getElementById('site-header');
   if (!host) return;
   const current = location.pathname.split('/').pop() || 'index.html';
+  const isDashboard = document.body.dataset.page === 'dashboard';
   const navHtml = SITE.nav.map(item => {
     const active = item.href === current ? ' class="active"' : '';
     return `<a href="${item.href}"${active}>${item.label}</a>`;
   }).join('');
+  const authButtons = isDashboard ? '' : `
+          <a class="btn btn-outline btn-sm" href="cabinet.html?tab=login">Войти</a>
+          <a class="btn btn-sm" href="cabinet.html?tab=register">Регистрация</a>`;
   host.innerHTML = `
     <header class="site-header">
       <div class="header-inner">
         <a class="brand" href="index.html"><img src="assets/logo.svg" alt="${SITE.name}">${SITE.name}</a>
         <nav class="main-nav" id="main-nav">${navHtml}</nav>
-        <div class="header-actions">
-          <a class="btn btn-outline btn-sm" href="cabinet.html?tab=login">Войти</a>
-          <a class="btn btn-sm" href="cabinet.html?tab=register">Регистрация</a>
+        <div class="header-actions">${authButtons}
           <button class="menu-toggle" id="menu-toggle" aria-label="Меню" aria-expanded="false"><span data-icon="menu" data-size="24"></span></button>
         </div>
       </div>
@@ -23,7 +25,7 @@ function renderHeader() {
 function renderNotice() {
   const host = document.getElementById('notice-bar');
   if (!host) return;
-  host.innerHTML = `<div class="notice-bar">Демо-версия сайта PlatiMarket: интерфейс готов, бэкенд и приём платежей ещё не подключены.</div>`;
+  host.innerHTML = `<div class="notice-bar">PlatiMarket в разработке: регистрация и баланс в кошельке настоящие, но пополнение — демо-зачисление, вывод и приём платежей для бизнеса ещё не подключены к реальным провайдерам.</div>`;
 }
 
 function renderFooter() {

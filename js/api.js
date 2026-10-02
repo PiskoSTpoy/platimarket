@@ -1,63 +1,67 @@
 /*
- * Демо-слой API. Сейчас все методы — заглушки (возвращают Promise с демо-данными),
- * бэкенда нет. Когда появится сервер, нужно:
- *  1) указать SITE.api.baseUrl в js/config.js;
- *  2) заменить тело методов на fetch(...) к реальным эндпоинтам (сигнатуры ниже — ориентир);
- *  3) настроить CORS и аутентификацию (токен/cookie) на сервере.
+ * Клиент к бэкенду PlatiMarket (server/index.js, Express + SQLite). Аутентификация,
+ * баланс, обмен, пополнение и вывод — реальные запросы к серверу (с демо-пополнением:
+ * баланс зачисляется мгновенно, без подключения настоящего платёжного провайдера).
  *
- * Предлагаемые эндпоинты бэкенда (TODO, под личный кабинет):
- *   POST /api/auth/register      { email, password }              -> { userId }
- *   POST /api/auth/login         { email, password }               -> { token }
- *   GET  /api/me                                                   -> { id, email, verified }
- *   GET  /api/balances                                              -> { balances: [{code, amount}] }
- *   GET  /api/rates                                                 -> { rates: { USD: 1, BTC: 62000, ... } }
- *   POST /api/exchange           { from, to, amount }               -> { id, rate, receiveAmount }
- *   POST /api/deposits           { method, currency, amount }       -> { id, status, paymentDetails }
- *   POST /api/withdrawals        { method, currency, amount, requisites } -> { id, status }
- *   GET  /api/transactions                                          -> { items: [...] }
- *   POST /api/business/invoices  { amount, currency, description }  -> { id, payUrl }
- *   POST /api/business/payouts   { items: [{to, currency, amount}] } -> { batchId, status }
+ * Бизнес-инструменты (счета, массовые выплаты) пока не реализованы на сервере —
+ * createInvoice()/createMassPayout() остаются демо-заглушками до интеграции с
+ * платёжными провайдерами.
  */
-const API = {
-  async getRates() {
-    const rates = {};
-    SITE.currencies.forEach(c => { rates[c.code] = c.rateToUsd; });
-    return Promise.resolve({ rates, demo: true });
-  },
+async function apiRequest(method, path, body) {
+  const res = await fetch(path, {
+    method,
+    headers: body ? { 'Content-Type': 'application/json' } : undefined,
+    credentials: 'include',
+    body: body ? JSON.stringify(body) : undefined,
+  });
+  let data = null;
+  try { data = await res.json(); } catch { /* пустой ответ */ }
+  if (!res.ok) {
+    const err = new Error((data && data.error) || `Ошибка запроса (${res.status})`);
+    err.status = res.status;
+    throw err;
+  }
+  return data;
+}
 
+const API = {
   async register(email, password) {
-    console.info('[demo] register()', { email });
-    return Promise.resolve({ demo: true, userId: 'demo-user', email });
+    return apiRequest('POST', '/api/auth/register', { email, password });
   },
 
   async login(email, password) {
-    console.info('[demo] login()', { email });
-    return Promise.resolve({ demo: true, token: 'demo-token' });
+    return apiRequest('POST', '/api/auth/login', { email, password });
+  },
+
+  async logout() {
+    return apiRequest('POST', '/api/auth/logout');
   },
 
   async getProfile() {
-    return Promise.resolve({ demo: true, id: 'demo-user', email: null, verified: false });
+    return apiRequest('GET', '/api/me');
   },
 
   async getBalances() {
-    return Promise.resolve({ demo: true, balances: SITE.currencies.map(c => ({ code: c.code, amount: 0 })) });
+    return apiRequest('GET', '/api/balances');
   },
 
   async createExchange(from, to, amount) {
-    console.info('[demo] createExchange()', { from, to, amount });
-    return Promise.resolve({ demo: true, id: 'demo-ex-' + Date.now(), status: 'pending' });
+    return apiRequest('POST', '/api/exchange', { from, to, amount });
   },
 
   async createDeposit(method, currency, amount) {
-    console.info('[demo] createDeposit()', { method, currency, amount });
-    return Promise.resolve({ demo: true, id: 'demo-dep-' + Date.now(), status: 'pending', paymentDetails: null });
+    return apiRequest('POST', '/api/deposits', { method, currency, amount });
   },
 
   async createWithdrawal(method, currency, amount, requisites) {
-    console.info('[demo] createWithdrawal()', { method, currency, amount, requisites });
-    return Promise.resolve({ demo: true, id: 'demo-wd-' + Date.now(), status: 'pending' });
+    return apiRequest('POST', '/api/withdrawals', { method, currency, amount, requisites });
   },
 
+  async listTransactions() {
+    return apiRequest('GET', '/api/transactions');
+  },
+
+  // TODO: бизнес-методы ниже всё ещё демо — на сервере нет реальной логики счетов и выплат.
   async createInvoice(amount, currency, description) {
     console.info('[demo] createInvoice()', { amount, currency, description });
     return Promise.resolve({ demo: true, id: 'demo-inv-' + Date.now(), payUrl: '#' });
@@ -66,9 +70,5 @@ const API = {
   async createMassPayout(items) {
     console.info('[demo] createMassPayout()', items);
     return Promise.resolve({ demo: true, batchId: 'demo-batch-' + Date.now(), status: 'queued', count: items.length });
-  },
-
-  async listTransactions() {
-    return Promise.resolve({ demo: true, items: [] });
   },
 };

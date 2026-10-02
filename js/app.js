@@ -117,7 +117,7 @@ function initCabinetForm() {
           <div class="field"><label for="cab-pass">Пароль</label><input id="cab-pass" type="password" required minlength="6" placeholder="минимум 6 символов"></div>
           <button class="btn btn-block" type="submit">${tab === 'register' ? 'Создать аккаунт' : 'Войти'}</button>
         </form>
-        <div class="demo-note">Личный кабинет в разработке: регистрация и вход пока не сохраняют данные — это демонстрация интерфейса (см. js/api.js).</div>
+        <div class="demo-note">Баланс пополняется демо-зачислением (без настоящего платёжного провайдера), но регистрация, вход и операции реальны и сохраняются на сервере.</div>
       </div>`;
 
     root.querySelectorAll('.auth-tabs button').forEach(btn => {
@@ -128,12 +128,18 @@ function initCabinetForm() {
       e.preventDefault();
       const email = root.querySelector('#cab-email').value;
       const password = root.querySelector('#cab-pass').value;
-      if (tab === 'register') {
-        await API.register(email, password);
-        showToast('Демо: заявка на регистрацию отправлена в API.register()');
-      } else {
-        await API.login(email, password);
-        showToast('Демо: запрос на вход отправлен в API.login()');
+      const submitBtn = root.querySelector('button[type=submit]');
+      submitBtn.disabled = true;
+      try {
+        if (tab === 'register') {
+          await API.register(email, password);
+        } else {
+          await API.login(email, password);
+        }
+        location.href = 'dashboard.html';
+      } catch (err) {
+        showToast(err.message || 'Что-то пошло не так');
+        submitBtn.disabled = false;
       }
     });
   }
